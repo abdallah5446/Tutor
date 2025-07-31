@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoring Lead Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-graduation-cap"></i> Tutoring Lead Finder</h1>
+                <p class="subtitle">Find tutoring opportunities from Reddit, Kijiji, and Facebook Marketplace</p>
+            </div>
+        </header>
+
+        <!-- Dashboard Stats -->
+        <section class="dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-info">
+                        <h3 id="totalLeads">0</h3>
+                        <p>Total Leads</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <div class="stat-info">
+                        <h3 id="recentLeads">0</h3>
+                        <p>Recent (24h)</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <div class="stat-info">
+                        <h3 id="lastUpdated">Never</h3>
+                        <p>Last Updated</p>
+                    </div>
+                </div>
+                <div class="stat-card action-card">
+                    <button id="scrapeBtn" class="scrape-btn">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh Leads
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters and Search -->
+        <section class="filters">
+            <div class="filter-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by keyword...">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="sourceFilter">Source:</label>
+                    <select id="sourceFilter">
+                        <option value="">All Sources</option>
+                        <option value="reddit">Reddit</option>
+                        <option value="kijiji">Kijiji</option>
+                        <option value="facebook">Facebook</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="subjectFilter">Subject:</label>
+                    <select id="subjectFilter">
+                        <option value="">All Subjects</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="english">English</option>
+                        <option value="languages">Languages</option>
+                        <option value="computer science">Computer Science</option>
+                        <option value="test preparation">Test Preparation</option>
+                    </select>
+                </div>
+
+                <button id="clearFilters" class="clear-btn">
+                    <i class="fas fa-times"></i>
+                    Clear Filters
+                </button>
+            </div>
+        </section>
+
+        <!-- Source Breakdown -->
+        <section class="source-breakdown">
+            <h3><i class="fas fa-pie-chart"></i> Leads by Source</h3>
+            <div id="sourceStats" class="source-stats"></div>
+        </section>
+
+        <!-- Leads Display -->
+        <section class="leads-section">
+            <div class="leads-header">
+                <h2><i class="fas fa-list"></i> Available Leads</h2>
+                <div class="results-info">
+                    <span id="resultsCount">Loading...</span>
+                </div>
+            </div>
+
+            <div id="loadingSpinner" class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading leads...</p>
+            </div>
+
+            <div id="leadsContainer" class="leads-grid">
+                <!-- Leads will be dynamically inserted here -->
+            </div>
+
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No leads found</h3>
+                <p>Try adjusting your search criteria or refresh the leads.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Lead Detail Modal -->
+    <div id="leadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
