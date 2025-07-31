@@ -119,16 +119,40 @@ Returns application statistics
 
 ## Configuration
 
-### Reddit API (Optional)
-For production use with Reddit, set up API credentials:
+### Reddit API Setup (Required for Real Data)
+To get actual leads from Reddit instead of sample data:
 
-1. Create a Reddit app at https://www.reddit.com/prefs/apps
-2. Add credentials to environment variables:
+1. **Create a Reddit App:**
+   - Go to https://www.reddit.com/prefs/apps
+   - Click "Create App" or "Create Another App"
+   - Choose "script" as the app type
+   - Fill in the required fields:
+     - Name: "Tutoring Lead Scraper" (or any name)
+     - Description: "Scrapes tutoring leads from Reddit"
+     - About URL: (can be left blank)
+     - Redirect URI: http://localhost:8080 (required but not used)
+
+2. **Get Your Credentials:**
+   - Client ID: Found under your app name (14-character string)
+   - Client Secret: The "secret" field
+
+3. **Set Up Environment Variables:**
    ```bash
-   export REDDIT_CLIENT_ID="your_client_id"
-   export REDDIT_CLIENT_SECRET="your_client_secret"
-   export REDDIT_USER_AGENT="tutoring_scraper"
+   # Copy the example file
+   cp .env.example .env
+   
+   # Edit the .env file with your credentials
+   REDDIT_CLIENT_ID=your_14_character_client_id
+   REDDIT_CLIENT_SECRET=your_27_character_secret
+   REDDIT_USER_AGENT=tutoring_scraper/1.0
    ```
+
+4. **Restart the Application:**
+   ```bash
+   python app.py
+   ```
+
+The scraper will now fetch real tutoring posts from Reddit!
 
 ### Web Scraping Considerations
 - The current implementation uses sample data for demonstration

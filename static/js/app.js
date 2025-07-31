@@ -199,8 +199,10 @@ class TutoringLeadApp {
                 
                 <div class="lead-meta">
                     <span class="lead-badge ${sourceClass}">${this.capitalizeFirst(lead.source)}</span>
+                    ${lead.subreddit ? `<span class="lead-badge subreddit-badge">r/${this.escapeHtml(lead.subreddit)}</span>` : ''}
                     <span class="lead-badge subject-badge">${this.escapeHtml(lead.subject || 'General')}</span>
                     <span class="lead-badge budget-badge">${this.escapeHtml(lead.budget || 'Not specified')}</span>
+                    ${lead.score !== undefined ? `<span class="lead-badge score-badge">↑${lead.score}</span>` : ''}
                 </div>
                 
                 <div class="lead-description">
@@ -233,8 +235,11 @@ class TutoringLeadApp {
                 
                 <div class="lead-meta" style="margin: 20px 0;">
                     <span class="lead-badge ${sourceClass}">${this.capitalizeFirst(lead.source)}</span>
+                    ${lead.subreddit ? `<span class="lead-badge subreddit-badge">r/${this.escapeHtml(lead.subreddit)}</span>` : ''}
                     <span class="lead-badge subject-badge">${this.escapeHtml(lead.subject || 'General')}</span>
                     <span class="lead-badge budget-badge">${this.escapeHtml(lead.budget || 'Not specified')}</span>
+                    ${lead.score !== undefined ? `<span class="lead-badge score-badge">↑${lead.score}</span>` : ''}
+                    ${lead.num_comments !== undefined ? `<span class="lead-badge comments-badge">${lead.num_comments} comments</span>` : ''}
                 </div>
                 
                 <div style="margin: 20px 0;">
@@ -248,6 +253,9 @@ class TutoringLeadApp {
                         <li><strong>Location:</strong> ${this.escapeHtml(lead.location || 'Not specified')}</li>
                         <li><strong>Contact:</strong> ${this.escapeHtml(lead.contact || 'See original post')}</li>
                         <li><strong>Posted:</strong> ${postedDate}</li>
+                        ${lead.subreddit ? `<li><strong>Subreddit:</strong> r/${this.escapeHtml(lead.subreddit)}</li>` : ''}
+                        ${lead.score !== undefined ? `<li><strong>Reddit Score:</strong> ${lead.score} upvotes</li>` : ''}
+                        ${lead.num_comments !== undefined ? `<li><strong>Comments:</strong> ${lead.num_comments}</li>` : ''}
                     </ul>
                 </div>
                 
